@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/babel-standalone/babel.min.js"></script>
+    <title>react-测试哈哈</title>
+    <style>
+     div{
+            position: absolute;
+            top:50%;
+            left:50%;
+            width:100%;
+            transform:translate(-50%,-50%);
+            text-align: center;
+            font-size: 50px;
+            background: #000;
+            color:#fff;
+            
+    }
+    
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+<script type="text/babel">
+   class App extends React.Component{
+       constructor(){
+           super();
+           this.state={
+               opacity:1.0,
+               flag:true
+           }
+       }
+       componentDidMount(){
+           setInterval(()=>{
+               let opacity=this.state.opacity;
+               opacity-=.05;
+               if(opacity<0.1){
+                   opacity=1.0;
+               }
+               this.setState({
+                   opacity:opacity
+               })
+           },100)
+       }
+      bindmove1(){
+          this.setState({
+              flag:false,
+              
+          })
+      }
+      bindmove2(){
+          this.setState({
+              flag:true
+          })
+      }
+        render(){
+       return(
+           <div style={{opacity:this.state.opacity}} onMouseMove={()=>{this.bindmove1()}} onMouseOut={()=>{this.bindmove2()}}>
+           {this.state.flag ? 'Hello,world !':'你好,世界 !'}
+           </div>
+       )
+   }
+   }  
+   ReactDOM.render(
+       <App />,
+       document.getElementById('div1')
+   )
+</script>
+</html>

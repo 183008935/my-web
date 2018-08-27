@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/babel-standalone/babel.min.js"></script>
+    <title>react-生命周期-销毁</title>
+    <style>   
+    div{
+            position: absolute;
+            top:50%;
+            left:50%;
+            width:100%;
+            transform:translate(-50%,-50%);
+            text-align: center;
+            font-size: 50px;
+            
+    }
+     
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+   <script type="text/babel">
+          class App extends React.Component{
+              constructor(){
+                  super();
+                  this.state={
+                      opacity:1.0
+                  }
+              }
+              componentDidMount(){
+                  this.timer=setInterval(()=>{
+                      let {opacity}=this.state;
+                      opacity-=0.05;
+                      if(opacity<0.1){
+                          opacity=1.0
+                      }
+                      this.setState({
+                        opacity:opacity
+                      })  
+                  },100)
+              }
+              componentWillUnmount(){
+                  clearInterval(this.timer)
+              }
+              render(){
+                  return (
+                      <h3 style={this.state}>
+                      Hello,{this.props.name} !</h3>
+                  )
+              }
+          }
+          ReactDOM.render(
+              <App name="世界"/>,
+              document.getElementById('div1')
+          )
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/babel-standalone/babel.min.js"></script>
+    <title>react-dom3-组件-自定义组件形式</title>
+</head>
+<body>
+    <div id="div1"></div>
+   <script type="text/babel">
+     const comment = {
+         date:new Date(),
+         text:'田家豪在学习react!!!!',
+         author:{
+             name:'hello Kitty',
+             avatarUrl:'http://placekitten.com/g/64/64'
+         }
+     };
+     function gxDate(d){
+         return d.toLocaleDateString();
+     };
+     
+     let Comment=(props) =>{
+          return(
+              <div>
+              <div>
+              <img src={props.author.avatarUrl}/>
+               <p>{props.author.name}</p>
+              </div>
+              <div>{props.text}</div>
+              <div>{gxDate(props.date)}</div>
+              </div>
+          )
+     }
+    ReactDOM.render(
+         <Comment
+         date={comment.date}
+         text={comment.text}
+         author={comment.author} 
+         />   ,
+        document.getElementById('div1')
+    )
+    
+    </script>
+</body>
+</html>

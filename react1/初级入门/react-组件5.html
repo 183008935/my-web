@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/babel-standalone/babel.min.js"></script>
+    <title>react-dom4-组件-继承-props-children</title>
+</head>
+<body>
+    <div id="div1"></div>
+   <script type="text/babel">
+    class App extends React.Component{
+        render(){
+            console.log(this.props.children)
+            return(
+               <ul>
+                {React.Children.map(this.props.children,(item,index)=>{
+                    return <li key={index}>hello,{item}</li>
+                })}
+                </ul>
+            )
+       
+    };
+}
+   const data={
+       address:'武汉',
+       obj:{
+           name:'sonia'
+       } };
+       
+    ReactDOM.render(
+           <App>
+            <span>111</span>
+            <span>222</span>
+            <span>333</span>
+            </App>,
+        document.getElementById('div1')
+    )
+    
+    </script>
+</body>
+</html>

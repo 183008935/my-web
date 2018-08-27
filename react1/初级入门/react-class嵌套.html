@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/babel-standalone/babel.min.js"></script>
+    <title>react-dom4-组件-继承-props-children</title>
+</head>
+<body>
+    <div id="div1"></div>
+   <script type="text/babel">
+           
+           let Sub =(props) => {
+               return <h2>{props.name}</h2>
+           }
+        class App extends React.Component{
+           
+            render(){
+                return(
+                    <div>
+                      <h1>hello,{this.props.name}</h1> 
+                      <Sub  name="田家豪"/>
+                      
+                        
+                   </div>
+                )
+            }
+        }
+    ReactDOM.render(
+           <App name="世界"/>
+            
+           ,
+        document.getElementById('div1')
+    )
+    
+    </script>
+</body>
+</html>

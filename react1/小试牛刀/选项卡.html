@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/babel-standalone/babel.min.js"></script>
+    <title>react-事件处理-第二种方式</title>
+    <style>
+    .list{
+        width: 200px;
+        height: 200px;
+        background: #000;
+        color:#fff;
+        line-height: 200px;
+        text-align: center;
+    }
+    
+    .listStyle{
+        background: #000;
+        color:#fff;
+    }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+<script type="text/babel">
+
+   let  ListInfo=(props)=>{
+      switch (props.type) {
+          case '1':return <One />
+              break;
+              case '2':return <Two />
+              break;
+              case '3':return <Sur />
+              break;
+         
+      }
+   }
+    let  One=()=>{
+       return <div>hello,world！！</div>
+   }
+    let  Two=()=>{
+       return <div>你好, 你好！！</div>
+   }
+   let  Sur=()=>{
+       return <div>再见，曾经！！</div>
+   }
+   class TabList extends React.Component{
+       constructor(){
+           super();
+           this.state={
+               isShowOne:'1'
+           }
+       }
+    
+       listClick(type){
+       
+        switch (type) {
+            case '1':this.setState({isShowOne:'1'})
+              break;
+              case '2':this.setState({isShowOne:'2'})
+              break;
+              case '3':this.setState({isShowOne:'3'})
+              break;
+      }    
+       }
+        render(){
+        let isShowOne= this.state.isShowOne
+        return(
+            <div>
+                <button className={isShowOne=='1'?'listStyle':''} onClick={()=>this.listClick('1')}>列表一</button>
+                <button className={isShowOne=='2'?'listStyle':''} onClick={()=>this.listClick('2')}>列表二</button>
+                <button className={isShowOne=='3'?'listStyle':''} onClick={()=>this.listClick('3')}>列表三</button>
+                <div className={'list'}  >
+                    <ListInfo  type={isShowOne} />
+                </div>
+            </div>
+        )
+   }
+   }
+  
+   ReactDOM.render(
+       <TabList />,
+       document.getElementById('div1')
+   )
+
+</script>
+</html>

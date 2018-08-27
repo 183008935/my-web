@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="../node_modules/babel-standalone/babel.min.js"></script>
+    <title>react-事件处理-第二种方式</title>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+<script type="text/babel">
+   class App extends React.Component{
+       constructor(){
+           super();
+           this.state={
+               flag:true
+           }
+       }
+       bindClick(){
+           this.setState({
+               flag:!this.state.flag
+           })
+       }
+        render(){
+       return(
+           <button onClick={()=>this.bindClick()}>
+           {this.state.flag ? '打开':'关闭'}
+           </button>
+       )
+   }
+   }
+   
+   ReactDOM.render(
+       <App />,
+       document.getElementById('div1')
+   )
+
+
+
+
+</script>
+</html>
