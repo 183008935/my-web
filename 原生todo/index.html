@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>备忘录</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<script type="text/javascript" src="js/jquery1.9.1.min.js"></script>
+</head>
+<body>
+	<h1>todos</h1>
+	<div class="content">
+		<div class="add">
+			<input type="checkbox" class="all_note_ok">
+			<input class="new_note" id="new_note" placeholder="What needs to be done?">
+			<input type="hidden" id="ok">
+		</div>
+		<ul class="note_list">
+			<div class="all_list"></div>
+			<li>
+				<div class="all_count">
+					<span class="wait_ok">待完成【<span class="wait_ok_num">2</span>】</span>
+					<div class="fillters">
+						<span class="note_all active">所有</span>
+						<span class="all_ok">已完成</span>
+						<span class="no_ok">未完成</span>
+					</div>
+					<span class="clear_all">清除所有</span>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="bottom_one"></div>
+	<div class="bottom_two"></div>
+	<footer>
+		Copyright © <span id="year"></span> yangruichao All Rights Reserved | <a href="http://www.chao99.top" target="_blank">初心 - 杨瑞超</a>
+	</footer>
+	<script type="text/javascript">
+		var time=new Date();
+		var	year=time.getFullYear();
+		$('#year').html(year);
+
+		$('#new_note').focus();
+
+
+		//开始储存数据
+		var ok=$('#ok');
+		//var num =Math.random().toString().replace(/\d+\.(\d*)/,"$1")+"";
+		var keys="chao99"+Date.parse(new Date())/1000;
+		//var keys = num+time;
+			 //判断浏览器是否支持web storage
+			 if(!(window.localStorage)){
+			 	alert("此浏览器不支持web storage");
+			 }
+			//保存按钮单击事件
+			ok.click(function() {
+				var ipt=$('#new_note').val();
+				if(ipt==""){
+					alert('请输入内容');
+					return;
+				}
+				var notebook_val ='{"notebook_val":"'+ipt+'","code":"-1"}';
+				localStorage.setItem(keys,notebook_val);
+				window.location.reload();
+			});
+
+			//绑定回车事件
+			$("#new_note").keydown(function() {
+				if (event.keyCode == "13") {
+					ok.click();
+				}
+			});
+			$("body").keydown(function() {
+				if (event.keyCode == "13") {
+					$('input[name="edit_note"]').addClass('none');
+				}
+			});
+
+			//全选
+			var all_note_ok=$('.all_note_ok');
+			//获取数据
+			var str="";
+			var wait_num=0;
+			var all_ok_num=0;
+			var arr=[];
+			for(var i=0;i<localStorage.length;i++){
+				var key=localStorage.key(i);
+				var val=localStorage.getItem(key);
+				arr.push(val);
+			}
+		
+
+			//arr.reverse();
+
+			//为了提高速度，当备忘录不为空时遍历
+			if(arr!=null){
+				$.each(arr,function(index,value){
+					var key=localStorage.key(index);
+					var value=JSON.parse(value);
+					if(value.code=="1"){
+						var okk='checked';
+						var del_class="del_line";
+						all_ok_num++;
+					}else{
+						var okk='';
+						var del_class="";
+						wait_num++;
+					}
+					str+='<li><div class="view"><input class="ok_ok" type="checkbox" '+okk+' name="box" data-id="'+key+'"><span class="note_val '+del_class+'" data-id="'+key+'">'+value.notebook_val+'</span><input class="edit none" data-id="'+key+'" value="'+value.notebook_val+'" name="edit_note"><button class="del"  data-id="'+key+'"></button></div></li>';
+				})
+				$('.all_list').html(str);
+				$('.wait_ok_num').html(wait_num);
+				if(all_ok_num == arr.length){
+					all_note_ok.prop("checked", true);
+				}
+			}
+
+			//已完成
+			$('.all_ok').click(function() {
+				window.location.href='ok_ok.html';
+			});
+
+			//未完成
+			$('.no_ok').click(function() {
+				window.location.href='no_ok.html';
+			});
+
+			//全部
+			$('.note_all').click(function() {
+				window.location.href='index.html';
+			});
+
+
+
+			$('.del').click(function() {
+				var _self = $(this);
+				var id = _self.data('id');
+				localStorage.removeItem(id);
+	//删除之后刷新页面
+	window.location.reload();
+});
+
+//批量操作
+all_note_ok.click(function() {
+	$.each(arr,function(index,value){
+		var key=localStorage.key(index);
+		var value=JSON.parse(value);
+		var val_ing = value.notebook_val;
+		var _self = all_note_ok.is(':checked');
+		if(_self){
+			var code_ing="1";
+		}else{
+			var code_ing="-1";
+		}
+		var update_val='{"notebook_val":"'+val_ing+'","code":"'+code_ing+'"}';
+		localStorage.setItem(key,update_val);
+		window.location.reload();
+	})
+});
+
+var box=$('input[name="box"]');
+//完成点击后操作
+box.click(function() {
+	var _self = $(this);
+	var id = _self.data('id');
+	console.log(id);
+	//获取到当前点击的值
+	var _self_val = JSON.parse(localStorage.getItem(id));
+	var val_ing=_self_val.notebook_val;
+	var code_ing=_self_val.code;
+	var del=_self.parent().find('span');
+	if(_self.is(':checked')){
+		del.addClass('del_line');
+		code_ing=1;
+	}else{
+		code_ing=-1;
+		del.removeClass('del_line');
+	}
+	var update_val='{"notebook_val":"'+val_ing+'","code":"'+code_ing+'"}';
+	//console.log(id,update_val);
+	localStorage.setItem(id,update_val);
+			//存入之后刷新页面
+			window.location.reload();
+
+		});
+
+//编辑
+$('.note_val').dblclick(function() {
+	var edit_ipt = $('.edit');
+	var _self = $(this).parent().find('input[name="edit_note"]').removeClass('none');
+});
+
+$('.edit').blur(function(){
+	var edit_ipt = $('.edit');
+	var _self = $(this);
+	var id = _self.data('id');
+	//通过id获取到旧值
+	var _self_val = JSON.parse(localStorage.getItem(id));
+	var code=_self_val.code;
+	var value = _self.val();
+	var update_val='{"notebook_val":"'+value+'","code":"'+code+'"}';
+	localStorage.setItem(id,update_val);
+			//存入之后刷新页面
+			window.location.reload();
+			$('input[name="edit_note"]').addClass('none');
+		})
+
+		//清空所有备忘录
+		$('.clear_all').click(function() {
+			localStorage.clear();
+			window.location.reload();
+		});
+	</script>
+</body>
+</html>

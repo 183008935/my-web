@@ -1,0 +1,298 @@
+﻿html,body,ul,li{
+	padding:0px;
+	margin: 0px;
+	background: #f5f5f5;
+}
+h1 {
+	margin: 0px;
+	width: 100%;
+	font-size: 100px;
+	font-weight: normal;
+	text-align: center;
+	color: rgba(175, 47, 47, 0.15);
+}
+.content{
+	z-index: 9;
+	width: 556px;
+	text-align: center;
+	background: #fff;
+	margin: auto;
+	position: relative;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+	0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+.all_note_ok {
+	text-align: center;
+	border: 0px; 
+	background: none;
+	outline: none;
+	float: left;
+	padding: 16px 0px 0px 1px;
+}
+.all_note_ok:before {
+	content: '❯';
+	font-size: 22px;
+	color: #e6e6e6;
+	padding: 10px 27px 10px 27px;
+}
+
+.all_note_ok:checked:before {
+	color: #737373;
+}
+.all_note_ok {
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.new_note {
+	outline: none;
+	padding: 16px 16px 16px 60px;
+	border: none;
+	background: rgba(0, 0, 0, 0.003);
+	height: 26px;
+	margin-left: -126px;
+	font-size: 26px;
+	width: 430px;
+	font-family: inherit;
+	font-weight: inherit;
+	line-height: 1.4em;
+	font-smoothing: antialiased;
+}
+.new_note::-webkit-input-placeholder{
+	color: #e6e6e6;
+	text-align: left;
+	font-size: 26px;
+	font-style: oblique;
+}
+.add{
+	display: block;
+	border-bottom: 1px solid rgba(0,0,0,0.12);
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+.edit {
+	position: relative;
+	display: block;
+	margin-top:-53px;
+	margin-left: 46px;
+	height: 61px;
+	width: 92%;
+	font-size: 24px;
+	font-family: inherit;
+	font-weight: inherit;
+	line-height: 1.4em;
+	border: 0;
+	outline: none;
+	color: inherit;
+	padding: 6px;
+	border: 1px solid #999;
+	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+}
+.none{
+	display: none;
+}
+/*备忘录列表开始*/
+.view{
+	/*display: none;*/
+	/*float: left;*/
+	margin:0px;
+	background: #fff;
+}
+.note_val{
+	white-space: pre-line;
+	word-break: break-all;
+	padding: 15px 60px 15px 15px;
+	margin-left: 46px;
+	margin-top: -53px;
+	display: block;
+	line-height: 1.2;
+	transition: color 0.4s;
+}
+.note_list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.note_list li {
+	position: relative;
+	font-size: 24px;
+	border-bottom: 1px solid #ededed;
+	text-align: left;
+}
+/*最后一个li不要下边框*/
+.note_list li:last-child {
+	border-bottom: none;
+}
+.ok_ok {
+	text-align: center;
+	padding-top: 6px;
+	height: 40px;
+	width: 40px;
+	margin: auto 0;
+	border: none;
+	background: none;
+	-webkit-appearance: none;
+	appearance: none;
+	outline: none;
+}
+.ok_ok:after {
+	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
+}
+.ok_ok:checked:after {
+	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
+}
+.del{
+	display: none;
+	outline: none;
+	cursor: pointer;
+	float: right;
+	padding: 9px 16px 0px 0px;
+	width: 40px;
+	height: 40px;
+	/*margin: auto 0;*/
+	margin-top:-53px;
+	font-size: 30px;
+	color: #cc9a9a;
+	margin-bottom: 11px;
+	background: none;
+	border:0px;
+	transition: color 0.2s ease-out;
+}
+.del_line{
+			text-decoration:line-through;
+			/*color: #E0E0E0;*/
+			color: #d9d9d9;
+		}
+.del:hover {
+	color: #af5b5e;
+}
+
+.del:after {
+	content: '×';
+}
+
+.note_list li:hover .del {
+	display: block;
+}
+
+.footer {
+	color: #777;
+	padding: 10px 15px;
+	height: 20px;
+	text-align: left;
+	//border-top: 1px solid #e6e6e6;
+}
+
+.active{
+	border:1px solid #999;
+}
+
+.all_count {
+	color: #777;
+	padding: 10px 15px;
+	height: 20px;
+	text-align: center;
+	border-top: 1px solid #e6e6e6;
+	overflow: hidden;
+	background: #fff;
+}
+
+.wait_ok {
+	float: left;
+	text-align: left;
+	font-weight: 300;
+	font-size: 15px;
+}
+
+.fillters{
+	float: left;
+	padding-left: 109px;
+	font-size: 15px;
+	margin-right: 80px;
+}
+
+.fillters span{
+	padding: 0px 6px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.clear_all{
+	display: block;
+	float: right;
+	text-align: right;
+	font-weight: 300;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+/*备忘录列表结束*/
+.bottom_one {
+	position: relative;
+	z-index: 6;
+	margin: auto;
+	background: #fff;
+	width: 550px;
+	height: 6px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+.bottom_two {
+	position: relative;
+	margin: auto;
+	z-index: 5;
+	background: #fff;
+	width: 545px;
+	height: 6px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+footer{
+	margin-top:60px;
+	margin-bottom: 30px;
+	text-align: center;
+	color: #bfbfbf;
+	font-size: 12px;
+}
+footer a{
+	color: #bfbfbf;
+	font-size: 12px;
+	text-decoration: none;
+}
+/*
+
+str+='<div class="all_list"  data-id="'+key+'">
+					<li>
+						<div class="view">
+							<input class="ok_ok" type="checkbox" '+okk+' name="box" data-id="'+key+'">
+							<span class="note_val">'+value.notebook_val+'</span>
+							<input class="edit none" value="'+value.notebook_val+'">
+							<button class="del" data-id="'+key+'"></button>
+						</div>
+					</li>
+				</div>';
+
+
+
+
+
+				已完成备份
+				// $.each(arr,function(index,value){
+				// 	var key=localStorage.key(index);
+				// 	var value=JSON.parse(value);
+				// 	if(value.code=="1"){
+				// 		var okk='checked';
+				// 		var del_class="del_line";
+
+				// 		str+='<li><div class="view"><input class="ok_ok" type="checkbox" '+okk+' name="box" data-id="'+key+'"><span class="note_val '+del_class+'" data-id="'+key+'">'+value.notebook_val+'</span><input class="edit none" data-id="'+key+'" value="'+value.notebook_val+'" name="edit_note"><button class="del"  data-id="'+key+'"></button></div></li>';
+				// 	}
+				// })
+				// console.log(str);
+				// $('.all_list').html(666);
+				// $('.wait_ok_num').html(wait_num);
+
+
+*/
