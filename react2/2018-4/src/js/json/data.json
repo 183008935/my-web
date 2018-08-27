@@ -1,0 +1,9 @@
+{
+    "className":"43",
+    "students":[
+        {"name":"tom","age":19,"sex":"男"},
+        {"name":"田家豪","age":22,"sex":"男"},
+        {"name":"jarry","age":12,"sex":"男"},
+        {"name":"susan","age":21,"sex":"男"}
+    ]
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>增删改查</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="../build/react.js"></script>
+  <script src="../build/react-dom.js"></script>
+  <script src="../build/browser.min.js"></script>
+  <style>
+      .right{
+          float: right;
+      }
+  .list-group-item a{
+      margin-left:10px;
+
+  }
+  .item-edit{
+      outline: none;
+      border-width: 0 0 1px 0;
+  }
+  </style>
+</head>
+<body>
+   <div id="div1" class="container"></div>
+    <script type="text/babel">
+    ReactDOM.render(
+    <div>
+    <button className="btn btn-default">增加</button>
+    <ul className="list-group">
+    <li className="list-group-item">Cras justo odio<a className="right glyphicon glyphicon-edit" href="#" ></a> <a  className="right glyphicon glyphicon-remove" href="#"></a></li>
+    <li className="list-group-item">
+        <input className="item-edit"/><a  className="glyphicon glyphicon-edit"  href="#"></a>
+        <a  className=" glyphicon glyphicon-remove" href="#"></a>
+    </li>
+    <li className="list-group-item">Morbi leo risus</li>
+    <li className="list-group-item">Porta ac consectetur ac</li>
+    <li className="list-group-item">Vestibulum at eros</li>
+</ul></div>,
+document.getElementById('div1')
+);
+     
+    </script>
+</body>
+</html>

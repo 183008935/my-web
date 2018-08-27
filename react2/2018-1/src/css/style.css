@@ -1,0 +1,15 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.right{
+    float: right;
+}
+.list-group-item a{
+margin-left:10px;
+
+}
+.item-edit{
+outline: none;
+border-width: 0 0 1px 0;
+}
