@@ -8,7 +8,7 @@ export default class App extends Component {
     constructor(props){
         super(props);  
         if(!window.localStorage.getItem("todo-wm")){
-        window.localStorage.setItem("todo-wm","[]");
+        window.localStorage.setItem("todo-wm","[]")
     }
         this.state={
             todoDatas:JSON.parse(window.localStorage.getItem("todo-wm")),
