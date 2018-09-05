@@ -4,7 +4,6 @@ import Ietm from './Ietm';
 import Footer from './Footer';
 
 class App extends React.Component{
-  
     constructor(){
       super();
       this.local=localStorage;
@@ -33,15 +32,12 @@ class App extends React.Component{
        
            if(todo.id===elt.id){
                 
-             elt.value=value; 
-            
+             elt.value=value;  
            } 
-          
            return  elt ;
       }) 
-     
+      this.setState({local})
       this.local.setItem('react-todos',JSON.stringify(local));
-      window.location.reload();
 }
 
     keyDownPost(ev){
@@ -160,17 +156,10 @@ onDestroy(todo){
 
 componentWillMount(){
 
-
- 
- 
-
 }
 
   componentDidMount(){
-      
-     
-     
-  
+ 
   }
 
     render(){
@@ -178,21 +167,25 @@ componentWillMount(){
      
       let {local,inputVal,view}=this.state;
      
+       if(local===null){
+        this.local.setItem('react-todos',JSON.stringify(local));
+      }
+
       let items=null,footer=null,itemsBox=null; 
-    //  this.local.setItem('react-todos',JSON.stringify(local));
-    
-      local=JSON.parse(this.local.getItem('react-todos'));
+      
+       // this.local.setItem('react-todos',JSON.stringify(local)) 
+       local=JSON.parse(this.local.getItem('react-todos'));
 
       let leftCount=local.length;
       
-     
+      
       
      
       items=local.filter(elt=>{
         
         if(elt.hasCompleted){leftCount--};
         
-        //  this.local.setItem('react-todos',JSON.stringify(local)) 
+     
         
         switch(view){
 
@@ -214,11 +207,13 @@ componentWillMount(){
         // this.local.setItem('react-todos',JSON.stringify(local)) 
         return <Ietm {
          
-          ...{
+          ...{ 
+           
             onDestroy,
             todo:elt,
             onToggle,
             itemEditDone
+           
   
           }}
           

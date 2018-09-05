@@ -21,10 +21,11 @@ export default class Ietm extends React.Component{
         this.onKeyUp=this.onKeyUp.bind(this);
     }
      inputChange(ev){
-
+       
          this.setState({
              val:ev.target.value
          })
+        
       
      }
     itemEditDone(){ 
@@ -39,7 +40,7 @@ export default class Ietm extends React.Component{
        
        itemEditDone(todo,this.state.val);
       
-       
+      
     }
    onBlur(){
        
@@ -50,7 +51,7 @@ export default class Ietm extends React.Component{
     if(ev.keyCode!==13) return;
     
     this.itemEditDone();
-   
+    
     
    }
    onKeyUp(ev){
