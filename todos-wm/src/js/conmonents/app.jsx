@@ -3,8 +3,13 @@ import Item from './item';
 import Footer from './footer';
 
 export default class App extends Component {
+
+    
     constructor(props){
-        super(props);
+        super(props);  
+        if(!window.localStorage.getItem("todo-wm")){
+        window.localStorage.setItem("todo-wm","[]");
+    }
         this.state={
             todoDatas:JSON.parse(window.localStorage.getItem("todo-wm")),
             todoNum:JSON.parse(localStorage.getItem("todo-wm")).length
