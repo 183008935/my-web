@@ -39,6 +39,11 @@ class App extends React.Component{
            } 
            return  elt ;
       }) 
+      if(todo.value==""){
+        local=local.filter(elt=>{
+            return elt.id!==todo.id
+        })
+    }
       this.setState({local})
       this.local.setItem('react-todos',JSON.stringify(local));
 }
