@@ -97,7 +97,7 @@ export default class Ietm extends React.Component{
 
         let intemClassName=todo.hasCompleted?"completed":"";
         if(inEdit){
-            intemClassName+='editing'
+            intemClassName+=' editing'
         }
         return(
             <li className={intemClassName}>
