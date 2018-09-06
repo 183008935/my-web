@@ -8,14 +8,14 @@ class App extends React.Component{
       super();
       this.local=localStorage;
       if(!this.local.getItem('react-todos')){
-        local=JSON.parse(this.local.setItem("react-todos","[]"));
+        this.local.setItem("react-todos","[]");
     }  
+      
       this.state={
         local: [] || this.local.getItem('react-todos'),
         inputVal:'',
         view:'all'
       }
-      
       this.keyDownPost=this.keyDownPost.bind(this);
       this.onDestroy=this.onDestroy.bind(this);
       this.onclearCompleted=this.onclearCompleted.bind(this);
@@ -39,6 +39,11 @@ class App extends React.Component{
            } 
            return  elt ;
       }) 
+      if(todo.value==""){
+        local=local.filter(elt=>{
+            return elt.id!==todo.id
+        })
+    }
       this.setState({local})
       this.local.setItem('react-todos',JSON.stringify(local));
 }
@@ -173,7 +178,7 @@ componentWillMount(){
       //  if(local===null){
       //   this.local.setItem('react-todos',JSON.stringify(local));
       // }
-     
+   
 
       let items=null,footer=null,itemsBox=null; 
       
