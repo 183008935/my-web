@@ -8,7 +8,7 @@ class App extends React.Component{
       super();
       this.local=localStorage;
       if(!this.local.getItem('react-todos')){
-        local=JSON.parse(this.local.setItem("react-todos"));
+        local=JSON.parse(this.local.setItem("react-todos","[]"));
     }  
       this.state={
         local: [] || this.local.getItem('react-todos'),
@@ -39,11 +39,6 @@ class App extends React.Component{
            } 
            return  elt ;
       }) 
-      if(todo.value==""){
-        local=local.filter(elt=>{
-            return elt.id!==todo.id
-        })
-    }
       this.setState({local})
       this.local.setItem('react-todos',JSON.stringify(local));
 }
