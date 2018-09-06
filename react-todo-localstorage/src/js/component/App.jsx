@@ -65,7 +65,7 @@ class App extends React.Component{
       todo.value=value;
 
       todo.hasCompleted=false;
-      // localStorage.setItem('react-todos',JSON.stringify({id:todo.id,value:todo.value,hasCompleted:todo.hasCompleted}))
+    
       let {local}=this.state;
       local=JSON.parse(this.local.getItem('react-todos'));
       local.push(todo);
@@ -75,7 +75,7 @@ class App extends React.Component{
         inputVal:''
       }) 
       this.local.setItem('react-todos',JSON.stringify(local))
-      // this.local.setItem('react-todos',JSON.stringify(local))
+    
    }
    
     onclearCompleted(){
@@ -90,7 +90,7 @@ class App extends React.Component{
       this.setState({local}) 
       this.local.setItem('react-todos',JSON.stringify(local));
       
-      // localStorage.clear();
+  
     }
   
 changeView(view){
@@ -117,7 +117,7 @@ toggleAll(ev){
  local=JSON.parse(this.local.getItem('react-todos'));
 
  local = local.map(elt=>{
-  // this.local.setItem('react-todos', JSON.stringify({id:elt.id,value:elt.value,hasCompleted:elt.hasCompleted}))
+  
     this.local.setItem('react-todos',JSON.stringify(local));
     elt.hasCompleted=checked;
   
@@ -175,14 +175,10 @@ componentWillMount(){
      
       let {local,inputVal,view}=this.state;
      
-      //  if(local===null){
-      //   this.local.setItem('react-todos',JSON.stringify(local));
-      // }
-   
+      
 
       let items=null,footer=null,itemsBox=null; 
       
-       // this.local.setItem('react-todos',JSON.stringify(local)) 
        local=JSON.parse(this.local.getItem('react-todos')); 
 
       let leftCount=local.length;
@@ -213,7 +209,6 @@ componentWillMount(){
      
     
       items=items.map((elt,i)=>{
-        // this.local.setItem('react-todos',JSON.stringify(local)) 
         return <Ietm {
          
           ...{ 

@@ -61,12 +61,6 @@ export default class Ietm extends React.Component{
         },()=>this.refs.editInput.focus());     
     }
    
-    // componentWillMount(){
-    //     console.log(this.refs.editInput,"will")
-    // }
-    // componentDidMount(){
-    //     console.log(this.refs.editInput,"Did")
-    // }
     render(){
  
         // console.log(this.refs.editInput,"render")
