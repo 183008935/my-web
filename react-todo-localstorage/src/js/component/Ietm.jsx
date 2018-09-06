@@ -21,26 +21,17 @@ export default class Ietm extends React.Component{
         this.onKeyUp=this.onKeyUp.bind(this);
     }
      inputChange(ev){
-       
          this.setState({
              val:ev.target.value
-         })
-        
-      
+         })   
      }
     itemEditDone(){ 
-        
-        
         this.setState({
             inEdit:false
-        })
-     
-       
+        })      
        let {itemEditDone,todo}=this.props;
        
-       itemEditDone(todo,this.state.val);
-      
-      
+       itemEditDone(todo,this.state.val);    
     }
    onBlur(){
        
@@ -49,10 +40,7 @@ export default class Ietm extends React.Component{
    }
    onEnter(ev){
     if(ev.keyCode!==13) return;
-    
-    this.itemEditDone();
-    
-    
+    this.itemEditDone();  
    }
    onKeyUp(ev){
     
@@ -64,17 +52,13 @@ export default class Ietm extends React.Component{
     });
     
 }
-  
-
     onEdit(){
         let {value}=this.props.todo;
+        
         this.setState({
             inEdit:true,
             val:value
-        },()=>this.refs.editInput.focus());
-       
-        
-        
+        },()=>this.refs.editInput.focus());     
     }
    
     // componentWillMount(){
@@ -96,9 +80,11 @@ export default class Ietm extends React.Component{
         
 
         let intemClassName=todo.hasCompleted?"completed":"";
+
         if(inEdit){
             intemClassName+=' editing'
         }
+
         return(
             <li className={intemClassName}>
                 <div className="view">

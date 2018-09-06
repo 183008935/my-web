@@ -8,8 +8,8 @@ class App extends React.Component{
       super();
       this.local=localStorage;
       if(!this.local.getItem('react-todos')){
-        local=JSON.parse(this.local.setItem("react-todos","[]"));
-    }
+        local=JSON.parse(this.local.setItem("react-todos"));
+    }  
       this.state={
         local: [] || this.local.getItem('react-todos'),
         inputVal:'',
@@ -175,12 +175,15 @@ componentWillMount(){
      
       let {local,inputVal,view}=this.state;
      
+      //  if(local===null){
+      //   this.local.setItem('react-todos',JSON.stringify(local));
+      // }
      
 
       let items=null,footer=null,itemsBox=null; 
       
        // this.local.setItem('react-todos',JSON.stringify(local)) 
-       local=JSON.parse(this.local.getItem('react-todos'));
+       local=JSON.parse(this.local.getItem('react-todos')); 
 
       let leftCount=local.length;
       
@@ -258,7 +261,7 @@ componentWillMount(){
         
       return(
 
-         <div>
+         <div className="todoapp">
            <header className="header">
              <h1>钟声-todos</h1> 
              <input type="text"  
